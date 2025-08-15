@@ -20,3 +20,27 @@ module SampleApp
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+
+# class RequestLogger
+#   def initialize(app)
+#     @app = app
+#   end
+
+#   def call(env)
+#     puts "=== Rack env ==="
+#     env.each do |k, v|
+#       puts "#{k}: #{v}"
+#     end
+#     puts "=== End of env ==="
+
+#     @app.call(env)
+#   end
+# end
+
+# # ミドルウェアとして追加
+# module YourApp
+#   class Application < Rails::Application
+#     config.middleware.use RequestLogger
+#   end
+# end
