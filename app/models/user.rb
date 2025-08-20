@@ -90,8 +90,12 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+
   def feed
-    Micropost.where("user_id = ?", id)
+    part_of_feed = "relationships.follower_id = :id or microposts.user_id = :id"
+    Micropost.left_outer_joins(user: :followers)
+             .where(part_of_feed, { id: id }).distinct
+             .includes(:user, image_attachment: :blob)
   end
 
   def follow(other_user)

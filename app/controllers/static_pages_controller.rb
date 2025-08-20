@@ -14,7 +14,4 @@ class StaticPagesController < ApplicationController
 
   def contact 
   end
-  def feed
-    Micropost.where("user_id = ?",id)
-  end
 end
